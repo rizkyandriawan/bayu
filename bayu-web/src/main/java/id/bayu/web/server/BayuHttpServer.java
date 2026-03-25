@@ -120,7 +120,8 @@ public class BayuHttpServer {
             return;
         }
 
-        String method = exchange.getRequestMethod().toString();
+        String rawMethod = exchange.getRequestMethod().toString();
+        String method = "HEAD".equals(rawMethod) ? "GET" : rawMethod;
         String path = exchange.getRequestPath();
 
         // CORS
@@ -156,11 +157,29 @@ public class BayuHttpServer {
                 if (!res.isCommitted()) {
                     res.empty();
                 }
+            } catch (id.bayu.web.exception.ValidationException ve) {
+                if (!res.isCommitted()) {
+                    sendJson(ex, 400, java.util.Map.of(
+                            "error", "Validation failed",
+                            "message", ve.getMessage(),
+                            "status", 400,
+                            "errors", ve.getErrors()));
+                }
+            } catch (id.bayu.web.exception.HttpException he) {
+                if (!res.isCommitted()) {
+                    sendJson(ex, he.getStatus(), java.util.Map.of(
+                            "error", he.getStatus() >= 500 ? "Internal Server Error" : "Bad Request",
+                            "message", he.getMessage(),
+                            "status", he.getStatus()));
+                }
             } catch (Exception e) {
                 if (!res.isCommitted()) {
                     System.err.println("Error handling " + method + " " + path + ": " + e.getMessage());
                     e.printStackTrace();
-                    sendError(ex, 500, "Internal Server Error");
+                    sendJson(ex, 500, java.util.Map.of(
+                            "error", "Internal Server Error",
+                            "message", e.getMessage() != null ? e.getMessage() : e.getClass().getSimpleName(),
+                            "status", 500));
                 }
             }
         });
@@ -198,6 +217,16 @@ public class BayuHttpServer {
         exchange.getResponseHeaders().put(Headers.CONTENT_TYPE, "application/json; charset=utf-8");
         exchange.getResponseSender().send(
                 "{\"error\":\"" + message.replace("\"", "\\\"") + "\"}");
+    }
+
+    private void sendJson(HttpServerExchange exchange, int code, Object body) {
+        try {
+            exchange.setStatusCode(code);
+            exchange.getResponseHeaders().put(Headers.CONTENT_TYPE, "application/json; charset=utf-8");
+            exchange.getResponseSender().send(objectMapper.writeValueAsString(body));
+        } catch (Exception e) {
+            sendError(exchange, 500, "Failed to serialize error response");
+        }
     }
 
     public Router getRouter() { return router; }
