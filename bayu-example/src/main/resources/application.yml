@@ -1,0 +1,12 @@
+server:
+  port: 8080
+
+app:
+  greeting: Hello from Bayu
+
+datasource:
+  url: jdbc:h2:mem:bayudb;DB_CLOSE_DELAY=-1;INIT=RUNSCRIPT FROM 'classpath:schema.sql'
+  username: sa
+  password:
+  pool:
+    maximum-size: 5

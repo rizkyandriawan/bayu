@@ -1,0 +1,61 @@
+[
+  {
+    "name": "id.bayu.example.model.User",
+    "allPublicMethods": true,
+    "allPublicConstructors": true,
+    "allDeclaredFields": true
+  },
+  {
+    "name": "java.util.Map",
+    "allPublicMethods": true
+  },
+  {
+    "name": "java.util.ImmutableCollections$MapN",
+    "allPublicMethods": true,
+    "allDeclaredFields": true
+  },
+  {
+    "name": "java.util.ImmutableCollections$Map1",
+    "allPublicMethods": true,
+    "allDeclaredFields": true
+  },
+  {
+    "name": "java.util.ImmutableCollections$Map0",
+    "allPublicMethods": true,
+    "allDeclaredFields": true
+  },
+  {
+    "name": "java.util.ImmutableCollections$ListN",
+    "allPublicMethods": true,
+    "allDeclaredFields": true
+  },
+  {
+    "name": "java.util.ImmutableCollections$List12",
+    "allPublicMethods": true,
+    "allDeclaredFields": true
+  },
+  {
+    "name": "java.util.HashMap",
+    "allPublicMethods": true,
+    "allPublicConstructors": true
+  },
+  {
+    "name": "java.util.LinkedHashMap",
+    "allPublicMethods": true,
+    "allPublicConstructors": true
+  },
+  {
+    "name": "java.util.ArrayList",
+    "allPublicMethods": true,
+    "allPublicConstructors": true
+  },
+  {
+    "name": "org.h2.Driver",
+    "allPublicConstructors": true
+  },
+  {
+    "name": "org.h2.engine.Engine",
+    "allPublicMethods": true,
+    "allPublicConstructors": true
+  }
+]

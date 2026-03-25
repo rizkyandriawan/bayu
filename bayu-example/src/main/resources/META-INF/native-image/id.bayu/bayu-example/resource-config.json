@@ -1,0 +1,12 @@
+{
+  "resources": {
+    "includes": [
+      {"pattern": "application.*\\.yml"},
+      {"pattern": "application.*\\.yaml"},
+      {"pattern": "application.*\\.properties"},
+      {"pattern": "schema\\.sql"},
+      {"pattern": "META-INF/services/.*"},
+      {"pattern": "org/h2/.*"}
+    ]
+  }
+}

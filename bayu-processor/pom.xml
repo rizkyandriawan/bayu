@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>id.bayu</groupId>
+        <artifactId>bayu-parent</artifactId>
+        <version>0.1.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>bayu-processor</artifactId>
+    <name>Bayu Processor</name>
+    <description>Compile-time annotation processor for DI and route generation</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>id.bayu</groupId>
+            <artifactId>bayu-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>id.bayu</groupId>
+            <artifactId>bayu-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>id.bayu</groupId>
+            <artifactId>bayu-data</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>id.bayu</groupId>
+            <artifactId>bayu-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.palantir.javapoet</groupId>
+            <artifactId>javapoet</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <!-- Disable annotation processing for the processor itself -->
+                    <proc>none</proc>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

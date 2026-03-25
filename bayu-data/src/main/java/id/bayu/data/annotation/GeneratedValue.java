@@ -1,0 +1,14 @@
+package id.bayu.data.annotation;
+
+import id.bayu.data.GenerationType;
+
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+@Target(ElementType.FIELD)
+@Retention(RetentionPolicy.SOURCE)
+public @interface GeneratedValue {
+    GenerationType strategy() default GenerationType.IDENTITY;
+}
